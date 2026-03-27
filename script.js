@@ -5,6 +5,23 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const dateInput = document.getElementById("date-form")
+  var date = new Date().toISOString().slice(0,10);
+
+  dateInput.setAttribute("min", date)
+
+
+  dateInput.valueAsDate = new Date();
+  
+const textarea = document.querySelector(".devis__form textarea");
+textarea.addEventListener("input", () => {
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
+});
+
+  if (window.URL = "index.html") {
+
+
   /* ── i18n Translations ─────────────────────────────────── */
   const translations = {
     fr: {
@@ -306,5 +323,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Start the effect after a brief delay
   setTimeout(typeEffect, 1200);
-
+}
 });
