@@ -6,6 +6,52 @@
 const page = document.body.dataset.page;
 
 document.addEventListener('DOMContentLoaded', () => {
+
+      /* ── Mobile menu ────────────────────────────────────────── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ── Navbar scroll effect ───────────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 50);
+      lastScroll = scrollY;
+    }, { passive: true });
+
+    /* ── Scroll reveal ──────────────────────────────────────── */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+
   if (page == "contact") {
     const dateInput = document.getElementById("date-form")
     var date = new Date().toISOString().slice(0,10);
@@ -171,50 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let currentLang = 'fr';
-
-    /* ── Mobile menu ────────────────────────────────────────── */
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-
-    /* ── Navbar scroll effect ───────────────────────────────── */
-    const navbar = document.getElementById('navbar');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      navbar.classList.toggle('scrolled', scrollY > 50);
-      lastScroll = scrollY;
-    }, { passive: true });
-
-    /* ── Scroll reveal ──────────────────────────────────────── */
-    const revealEls = document.querySelectorAll('.reveal');
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    });
 
     revealEls.forEach(el => revealObserver.observe(el));
 
