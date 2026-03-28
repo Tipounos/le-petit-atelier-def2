@@ -1483,6 +1483,24 @@ ul {
 }
 
 /* Devis page */
+/* Devis variables ----------------------------------------------------------------- */
+
+.devis__body {
+    --accent : #CE955A;
+    --accent-hover: #CF7518;
+    --bg-dark: #261F17;
+    --bg: #1C1917;
+    --bg-light: #25211f;
+    --text: hsl(0, 0%, 90%);
+    --text-muted: hsl(0, 0%, 30%);
+    /* --accent : #976835;
+    --accent-hover: #CF7518;
+    --bg-dark: #8e7960;
+    --bg: #c7aa97;
+    --bg-light: #e7c5b4;
+    --text: hsl(0, 0%, 0%);
+    --text-muted: hsl(0, 0%, 70%); */
+}
 
 .devis__body {
     min-height: 100vh;
@@ -1505,7 +1523,7 @@ ul {
 }
 
 .devis__page p {
-    color: var(--white);
+    color: var(--text);
     margin-bottom: 20px;
 }
 
@@ -1559,12 +1577,12 @@ ul {
     border: 1px solid var(--accent);
     border-radius: 8px;
     padding: 5px;
-    background-color: var(--btn);
-    color: var(--white)
+    background-color: var(--bg-dark);
+    color: var(--text)
 }
 
 .devis__form *:not(.devis__submit)::placeholder {
-    color: var(--text-light);
+    color: var(--text-muted);
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -1581,7 +1599,7 @@ ul {
 }
 
 .devis__submit:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--accent-hover);
 }
 
 .devis__textarea {
